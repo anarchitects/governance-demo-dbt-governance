@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: int_customer_order_activity
+    description: Customer order activity prepared between staging and marts.
+    config:
+      tags: ["layer:intermediate", "domain:ecommerce", "owner:data-platform"]
+      meta:
+        layer: intermediate
+        domain: ecommerce
+        owner: data-platform
+        criticality: medium
+    columns:
+      - name: customer_id
+        description: Customer identifier.
+        tests:
+          - not_null
+          - unique
+      - name: first_order_date
+        description: First order date.
+      - name: most_recent_order_date
+        description: Most recent order date.
+      - name: order_count
+        description: Number of orders.
+
+  - name: int_orders_with_payments
+    description: Orders enriched with payment data between staging and marts.
+    config:
+      tags: ["layer:intermediate", "domain:ecommerce", "owner:data-platform"]
+      meta:
+        layer: intermediate
+        domain: ecommerce
+        owner: data-platform
+        criticality: medium
+    columns:
+      - name: order_id
+        description: Order identifier.
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: Customer identifier.
+        tests:
+          - not_null
+      - name: amount
+        description: Payment amount.
+      - name: payment_method
+        description: Payment method.

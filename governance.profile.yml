@@ -1,0 +1,11 @@
+name: dbt-demo
+description: Demo governance profile for a local dbt project.
+version: 1.0.0
+owner: Anarchitects
+domain: demo
+metadata:
+  purpose: Demonstrate dbt Governance host usage against a local DuckDB-backed dbt project.
+layers:
+  - staging
+  - marts
+  - intentionally_problematic

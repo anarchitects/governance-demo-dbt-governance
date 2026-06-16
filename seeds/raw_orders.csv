@@ -1,0 +1,5 @@
+id,customer_id,order_date,status
+100,1,2024-02-01,completed
+101,1,2024-02-10,completed
+102,2,2024-02-12,cancelled
+103,3,2024-02-13,completed

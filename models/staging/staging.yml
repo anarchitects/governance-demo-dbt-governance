@@ -1,0 +1,66 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: Canonical staging model for customer records.
+    config:
+      tags: ["staging", "ecommerce"]
+      meta:
+        layer: staging
+        domain: ecommerce
+        owner: data-platform
+        criticality: medium
+    columns:
+      - name: customer_id
+        description: Stable customer identifier.
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_orders
+    description: Canonical staging model for order records.
+    config:
+      tags: ["staging", "ecommerce"]
+      meta:
+        layer: staging
+        domain: ecommerce
+        owner: data-platform
+        criticality: medium
+    columns:
+      - name: order_id
+        description: Stable order identifier.
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: Customer key for the order.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_customers')
+                field: customer_id
+
+  - name: stg_payments
+    description: Canonical staging model for payment records.
+    config:
+      tags: ["staging", "ecommerce"]
+      meta:
+        layer: staging
+        domain: ecommerce
+        owner: data-platform
+        criticality: medium
+    columns:
+      - name: payment_id
+        description: Stable payment identifier.
+        tests:
+          - not_null
+          - unique
+      - name: order_id
+        description: Parent order key for the payment.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_orders')
+                field: order_id

@@ -1,0 +1,4 @@
+id,first_name,last_name,email,created_at
+1,Ada,Lovelace,ada@example.com,2024-01-01
+2,Grace,Hopper,grace@example.com,2024-01-03
+3,Alan,Turing,alan@example.com,2024-01-05

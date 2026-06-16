@@ -1,0 +1,4 @@
+id,order_id,amount,payment_method
+1000,100,49.99,card
+1001,101,29.99,paypal
+1002,103,99.99,card

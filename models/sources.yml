@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw ecommerce input data loaded from local CSV seeds.
+    schema: main
+    tables:
+      - name: raw_customers
+        description: Raw customer records.
+        columns:
+          - name: id
+            description: Raw customer identifier.
+            tests:
+              - not_null
+              - unique
+      - name: raw_orders
+        description: Raw order records.
+        columns:
+          - name: id
+            description: Raw order identifier.
+            tests:
+              - not_null
+              - unique
+          - name: customer_id
+            description: Reference to raw customer id.
+            tests:
+              - not_null
+      - name: raw_payments
+        description: Raw payment records.
+        columns:
+          - name: id
+            description: Raw payment identifier.
+            tests:
+              - not_null
+              - unique
+          - name: order_id
+            description: Reference to raw order id.
+            tests:
+              - not_null

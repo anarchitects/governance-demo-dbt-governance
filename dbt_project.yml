@@ -1,0 +1,23 @@
+name: anarchitecture_governance_demo
+profile: anarchitecture_governance_demo
+version: 1.0.0
+config-version: 2
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+target-path: "target"
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+  - "logs"
+  - "demo.duckdb"
+
+models:
+  anarchitecture_governance_demo:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
+    intentionally_problematic:
+      +materialized: view

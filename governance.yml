@@ -1,0 +1,29 @@
+profile:
+  path: governance.profile.yml
+  document:
+    name: dbt-demo
+
+adapter:
+  paths:
+    projectDir: .
+    manifestPath: target/manifest.json
+    catalogPath: target/catalog.json
+    runResultsPath: target/run_results.json
+    sourcesPath: target/sources.json
+  options:
+    validationMode: strict
+
+extension:
+  options:
+    signals: {}
+    metrics: {}
+
+runtime:
+  cacheDir: .anarchitecture/dbt-governance/runtime
+  reportPath: target/governance-report.json
+
+host:
+  artifactMode: use-existing-or-parse
+  output: human
+  ci:
+    failOnBlockingViolations: false

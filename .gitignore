@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+target/
+logs/
+dbt_packages/
+demo.duckdb
+profiles.yml
+.anarchitecture/
+.DS_Store
+dbt_internal_packages/

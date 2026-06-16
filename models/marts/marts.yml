@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: Customer dimension with order activity rollups.
+    config:
+      tags: ["marts", "ecommerce"]
+      meta:
+        layer: marts
+        domain: ecommerce
+        owner: analytics
+        criticality: high
+    columns:
+      - name: customer_id
+        description: Business key for each customer.
+        tests:
+          - not_null
+          - unique
+
+  - name: fct_orders
+    description: Order fact with payment context for analytics.
+    config:
+      tags: ["marts", "ecommerce"]
+      meta:
+        layer: marts
+        domain: ecommerce
+        owner: analytics
+        criticality: high
+    columns:
+      - name: order_id
+        description: Business key for each order.
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: Customer key associated to the order.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_id

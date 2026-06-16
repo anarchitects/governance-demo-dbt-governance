@@ -17,6 +17,8 @@ models:
   anarchitecture_governance_demo:
     staging:
       +materialized: view
+    intermediate:
+      +materialized: view
     marts:
       +materialized: table
     intentionally_problematic:

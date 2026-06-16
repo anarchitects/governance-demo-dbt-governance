@@ -7,5 +7,6 @@ metadata:
   purpose: Demonstrate dbt Governance host usage against a local DuckDB-backed dbt project.
 layers:
   - staging
+  - intermediate
   - marts
   - intentionally_problematic

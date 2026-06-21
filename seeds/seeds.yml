@@ -1,0 +1,44 @@
+version: 2
+
+seeds:
+  - name: raw_customers
+    description: Local seed backing the raw customer source in the demo.
+    config:
+      meta:
+        anarchitects:
+          governance:
+            layer: raw
+            domain: ecommerce
+            owner:
+              team: data-platform
+            criticality: medium
+            publicInterface: false
+            crossDomainApproved: false
+
+  - name: raw_orders
+    description: Local seed backing the raw order source in the demo.
+    config:
+      meta:
+        anarchitects:
+          governance:
+            layer: raw
+            domain: ecommerce
+            owner:
+              team: data-platform
+            criticality: medium
+            publicInterface: false
+            crossDomainApproved: false
+
+  - name: raw_payments
+    description: Local seed backing the raw payment source in the demo.
+    config:
+      meta:
+        anarchitects:
+          governance:
+            layer: raw
+            domain: ecommerce
+            owner:
+              team: data-platform
+            criticality: medium
+            publicInterface: false
+            crossDomainApproved: false

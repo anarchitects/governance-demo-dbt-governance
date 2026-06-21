@@ -7,6 +7,17 @@ sources:
     tables:
       - name: raw_customers
         description: Raw customer records.
+        config:
+          meta:
+            anarchitects:
+              governance:
+                layer: raw
+                domain: ecommerce
+                owner:
+                  team: data-platform
+                criticality: medium
+                publicInterface: false
+                crossDomainApproved: false
         columns:
           - name: id
             description: Raw customer identifier.
@@ -15,6 +26,17 @@ sources:
               - unique
       - name: raw_orders
         description: Raw order records.
+        config:
+          meta:
+            anarchitects:
+              governance:
+                layer: raw
+                domain: ecommerce
+                owner:
+                  team: data-platform
+                criticality: medium
+                publicInterface: false
+                crossDomainApproved: false
         columns:
           - name: id
             description: Raw order identifier.
@@ -27,6 +49,17 @@ sources:
               - not_null
       - name: raw_payments
         description: Raw payment records.
+        config:
+          meta:
+            anarchitects:
+              governance:
+                layer: raw
+                domain: ecommerce
+                owner:
+                  team: data-platform
+                criticality: medium
+                publicInterface: false
+                crossDomainApproved: false
         columns:
           - name: id
             description: Raw payment identifier.

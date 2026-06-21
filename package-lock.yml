@@ -1,0 +1,6 @@
+packages:
+- git: https://github.com/anarchitects/anarchitecture-community.git
+  name: anarchitects_governance
+  revision: 5790169a33c9a4a4b0b05fb1f410f4bdd8d0108c
+  subdirectory: packages/governance/dbt-package
+sha1_hash: 8b40290673bf20cf6a765c569549ed055c5e8299

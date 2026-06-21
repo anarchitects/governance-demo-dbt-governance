@@ -6,10 +6,15 @@ models:
     config:
       tags: ["staging", "ecommerce"]
       meta:
-        layer: staging
-        domain: ecommerce
-        owner: data-platform
-        criticality: medium
+        anarchitects:
+          governance:
+            layer: staging
+            domain: ecommerce
+            owner:
+              team: data-platform
+            criticality: medium
+            publicInterface: false
+            crossDomainApproved: false
     columns:
       - name: customer_id
         description: Stable customer identifier.
@@ -22,10 +27,15 @@ models:
     config:
       tags: ["staging", "ecommerce"]
       meta:
-        layer: staging
-        domain: ecommerce
-        owner: data-platform
-        criticality: medium
+        anarchitects:
+          governance:
+            layer: staging
+            domain: ecommerce
+            owner:
+              team: data-platform
+            criticality: medium
+            publicInterface: false
+            crossDomainApproved: false
     columns:
       - name: order_id
         description: Stable order identifier.
@@ -46,10 +56,15 @@ models:
     config:
       tags: ["staging", "ecommerce"]
       meta:
-        layer: staging
-        domain: ecommerce
-        owner: data-platform
-        criticality: medium
+        anarchitects:
+          governance:
+            layer: staging
+            domain: ecommerce
+            owner:
+              team: data-platform
+            criticality: medium
+            publicInterface: false
+            crossDomainApproved: false
     columns:
       - name: payment_id
         description: Stable payment identifier.

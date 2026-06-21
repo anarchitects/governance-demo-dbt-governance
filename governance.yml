@@ -20,7 +20,7 @@ extension:
 
 runtime:
   cacheDir: .anarchitecture/dbt-governance/runtime
-  reportPath: target/governance-report.json
+  reportPath: target/governance-report.md
 
 host:
   artifactMode: use-existing-or-parse

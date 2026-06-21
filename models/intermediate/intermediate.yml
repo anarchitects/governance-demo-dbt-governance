@@ -6,10 +6,15 @@ models:
     config:
       tags: ["layer:intermediate", "domain:ecommerce", "owner:data-platform"]
       meta:
-        layer: intermediate
-        domain: ecommerce
-        owner: data-platform
-        criticality: medium
+        anarchitects:
+          governance:
+            layer: intermediate
+            domain: ecommerce
+            owner:
+              team: data-platform
+            criticality: medium
+            publicInterface: false
+            crossDomainApproved: false
     columns:
       - name: customer_id
         description: Customer identifier.
@@ -28,10 +33,15 @@ models:
     config:
       tags: ["layer:intermediate", "domain:ecommerce", "owner:data-platform"]
       meta:
-        layer: intermediate
-        domain: ecommerce
-        owner: data-platform
-        criticality: medium
+        anarchitects:
+          governance:
+            layer: intermediate
+            domain: ecommerce
+            owner:
+              team: data-platform
+            criticality: medium
+            publicInterface: false
+            crossDomainApproved: false
     columns:
       - name: order_id
         description: Order identifier.

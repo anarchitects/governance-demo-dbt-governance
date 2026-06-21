@@ -6,7 +6,9 @@ domain: demo
 metadata:
   purpose: Demonstrate dbt Governance host usage against a local DuckDB-backed dbt project.
 layers:
+  - raw
   - staging
   - intermediate
   - marts
-  - intentionally_problematic
+ownership:
+  required: true

@@ -13,14 +13,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          node-version: '24'
 
       - name: Install dependencies
         run: |
@@ -29,6 +29,11 @@ jobs:
 
       - name: Prepare dbt profile
         run: cp profiles.yml.example profiles.yml
+
+      - name: Install dbt package dependencies
+        env:
+          DBT_PROFILES_DIR: ${{ github.workspace }}
+        run: dbt deps
 
       - name: Seed data
         env:
@@ -40,6 +45,16 @@ jobs:
           DBT_PROFILES_DIR: ${{ github.workspace }}
         run: dbt parse
 
+      - name: Build dbt models
+        env:
+          DBT_PROFILES_DIR: ${{ github.workspace }}
+        run: dbt run
+
+      - name: Run dbt tests
+        env:
+          DBT_PROFILES_DIR: ${{ github.workspace }}
+        run: dbt test
+
       - name: Setup governance runtime
         env:
           DBT_PROFILES_DIR: ${{ github.workspace }}
@@ -48,18 +63,12 @@ jobs:
       - name: Run governance check
         env:
           DBT_PROFILES_DIR: ${{ github.workspace }}
-        # Exit code 2 from dbt-governance indicates a runtime or contract
-        # compatibility diagnostic. The JSON report is still written.
-        # This known issue affects @anarchitects/governance-runtime-dbt@0.1.0,
-        # which reports its internal version as 0.0.1. The governance analysis
-        # runs and produces output. Remove "|| true" once the upstream npm
-        # package is updated.
-        run: dbt-governance check --report-path target/governance-report.json || true
+        run: dbt-governance check --report-path target/governance-report.json
 
       - name: Render markdown report
         env:
           DBT_PROFILES_DIR: ${{ github.workspace }}
-        run: dbt-governance report --format markdown --report-path target/governance-report.md || true
+        run: dbt-governance report --format markdown --report-path target/governance-report.md
 
       - name: Upload governance reports
         uses: actions/upload-artifact@v4

@@ -6,10 +6,15 @@ models:
     config:
       tags: ["marts", "ecommerce"]
       meta:
-        layer: marts
-        domain: ecommerce
-        owner: analytics
-        criticality: high
+        anarchitects:
+          governance:
+            layer: marts
+            domain: ecommerce
+            owner:
+              team: analytics
+            criticality: high
+            publicInterface: false
+            crossDomainApproved: false
     columns:
       - name: customer_id
         description: Business key for each customer.
@@ -20,23 +25,49 @@ models:
   - name: fct_orders
     description: Order fact with payment context for analytics.
     config:
+      contract:
+        enforced: true
       tags: ["marts", "ecommerce"]
       meta:
-        layer: marts
-        domain: ecommerce
-        owner: analytics
-        criticality: high
+        anarchitects:
+          governance:
+            layer: marts
+            domain: ecommerce
+            owner:
+              team: analytics
+            criticality: high
+            publicInterface: true
+            crossDomainApproved: false
+    data_tests:
+      - anarchitects_governance.has_governance_layer
+      - anarchitects_governance.has_governance_domain
+      - anarchitects_governance.has_governance_owner
+      - anarchitects_governance.has_governance_criticality
     columns:
       - name: order_id
         description: Business key for each order.
+        data_type: integer
         tests:
           - not_null
           - unique
       - name: customer_id
         description: Customer key associated to the order.
+        data_type: integer
         tests:
           - not_null
           - relationships:
               arguments:
                 to: ref('dim_customers')
                 field: customer_id
+      - name: order_date
+        description: Order date carried forward from the staging layer.
+        data_type: date
+      - name: status
+        description: Order status value from the source order record.
+        data_type: varchar
+      - name: amount
+        description: Payment amount associated to the order.
+        data_type: double
+      - name: payment_method
+        description: Payment method associated to the order.
+        data_type: varchar

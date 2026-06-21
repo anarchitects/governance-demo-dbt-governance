@@ -1,8 +1,9 @@
 version: 2
 
 models:
-  # Intentional demo smell: this model omits owner/domain/criticality metadata
-  # so governance checks can surface explainable findings in reports.
+  # Intentional demo smell: this model omits the companion package's
+  # nested governance metadata so both dbt-native checks and dbt-governance
+  # can surface explainable findings in reports.
   - name: unowned_customer_summary
     description: Segment-level customer summary used to demonstrate governance smells.
     config:

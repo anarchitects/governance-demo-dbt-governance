@@ -1,0 +1,4 @@
+packages:
+- git: https://github.com/anarchitects/anarchitecture-community.git
+  revision: governance-dbt-package@0.0.1
+  subdirectory: packages/governance/dbt-package

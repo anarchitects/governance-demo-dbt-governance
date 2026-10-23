@@ -1,0 +1,58 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(chore)"
+  ],
+  "enabledManagers": ["pip_requirements", "github-actions"],
+  "includePaths": [
+    ".github/workflows/**",
+    ".github/actions/**",
+    "requirements.txt"
+  ],
+  "timezone": "Europe/Brussels",
+  "schedule": ["before 6am on monday"],
+  "labels": ["dependencies"],
+  "rangeStrategy": "bump",
+  "semanticCommitScope": null,
+  "prConcurrentLimit": 2,
+  "prHourlyLimit": 1,
+  "automerge": false,
+  "platformAutomerge": false,
+  "vulnerabilityAlerts": {
+    "enabled": false
+  },
+  "osvVulnerabilityAlerts": false,
+  "lockFileMaintenance": {
+    "enabled": false,
+    "schedule": ["before 6am on monday"],
+    "automerge": false
+  },
+  "packageRules": [
+    {
+      "description": "Override preset grouping; keep production updates and majors separate unless explicitly grouped below.",
+      "matchManagers": ["pip_requirements", "github-actions"],
+      "groupName": null,
+      "automerge": false
+    },
+    {
+      "matchManagers": ["pip_requirements"],
+      "matchPackageNames": ["dbt-core", "dbt-duckdb"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "dbt-updates"
+    },
+    {
+      "description": "Keep major upgrades separate and require manual review for every update.",
+      "matchManagers": ["pip_requirements", "github-actions"],
+      "matchUpdateTypes": ["major"],
+      "groupName": null,
+      "automerge": false
+    }
+  ],
+  "prBodyNotes": [
+    "Manual review required. Preserve existing runtime compatibility; package upgrades do not perform Nx migrations or authorize a Nest 12/Native migration.",
+    "For published packages, review the affected Nx projects and correct Conventional Commit/release intent before merging. No automatic publishing or merging."
+  ]
+}
